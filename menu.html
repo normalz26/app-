@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ศูนย์รวมเครื่องมือและมินิเกมประจำกลุ่ม</title>
+
+  <!-- นำเข้า BeerCSS และ Material Symbols (ลิงก์เต็มพร้อมใช้งาน) -->
+  <link href="https://jsdelivr.net" rel="stylesheet">
+  <script type="module" src="https://jsdelivr.net"></script>
+  <script type="module" src="https://jsdelivr.net"></script>
+
+  <style>
+    /* ปรับแต่งเพิ่มเติมเล็กน้อยให้การ์ดคลิกง่ายและจัดระยะสวยงาม */
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      height: 100%;
+    }
+    .card-link article {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease;
+    }
+    .card-link:hover article, .card-link:active article {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="light">
+
+  <!-- ส่วนหัวตามโครงสร้างที่ต้องการ -->
+  <header class="fixed">
+    <nav>
+      <button class="circle transparent" data-ui="#menu-drawer" title="เมนู">
+        <i>menu</i>
+      </button>
+      <h6 class="max center-align">[ชื่อกลุ่มของคุณ] Hub</h6>
+      <!-- ปุ่มสลับโหมดกลางวัน / กลางคืน มุมขวาบน -->
+      <button class="circle transparent" onclick="toggleTheme()" title="สลับโหมดกลางวัน/กลางคืน">
+        <i id="theme-icon-header">dark_mode</i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- เมนูแถบข้าง (เปิดเมื่อกดปุ่ม menu ด้านซ้ายบน) -->
+  <dialog class="left" id="menu-drawer">
+    <header class="fixed">
+      <nav>
+        <button class="circle transparent" data-ui="#menu-drawer">
+          <i>close</i>
+        </button>
+        <h6 class="max">หมวดหมู่</h6>
+      </nav>
+    </header>
+    <a class="row round" href="#sec-tools" data-ui="#menu-drawer">
+      <i>build</i>
+      <span>เครื่องมือออนไลน์ยอดนิยม</span>
+    </a>
+    <a class="row round" href="#sec-study" data-ui="#menu-drawer">
+      <i>school</i>
+      <span>ช่วยเรียนและเอกสาร</span>
+    </a>
+    <a class="row round" href="#sec-games" data-ui="#menu-drawer">
+      <i>sports_esports</i>
+      <span>มินิเกมเล่นผ่านเว็บ</span>
+    </a>
+    <div class="divider"></div>
+    <!-- ปุ่มสลับโหมดในเมนูแถบข้าง -->
+    <a class="row round" onclick="toggleTheme()">
+      <i id="theme-icon-drawer">dark_mode</i>
+      <span id="theme-text-drawer">เปลี่ยนเป็นโหมดกลางคืน</span>
+    </a>
+  </dialog>
+
+  <!-- พื้นที่เนื้อหาหลัก -->
+  <main class="responsive">
+    
+    <!-- ช่องค้นหาสไตล์ Material 3 -->
+    <div class="field label prefix round border">
+      <i>search</i>
+      <input type="text" id="searchInput" onkeyup="filterCards()">
+      <label>ค้นหาเครื่องมือ แปลงไฟล์ ชีทสรุป หรือมินิเกม...</label>
+    </div>
+
+    <!-- หมวดหมู่ที่ 1: เครื่องมือออนไลน์ยอดนิยม -->
+    <section class="category-section" id="sec-tools">
+      <h5 class="small padding">เครื่องมือออนไลน์ยอดนิยม</h5>
+      <div class="grid">
+
+        <div class="s12 m6 l4 card-item">
+          <a href="https://converttoit.com" class="card-link" target="_blank" rel="noopener">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>transform</i>
+                  <h6 class="small max">Convert To It</h6>
+                </div>
+                <p>เครื่องมือแปลงไฟล์โอเพนซอร์สบนเบราว์เซอร์ แปลงข้ามฟอร์แมตได้อิสระโดยไม่อัปโหลดไฟล์</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">แปลงไฟล์</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+        <div class="s12 m6 l4 card-item">
+          <a href="https://wheelofnames.com" class="card-link" target="_blank" rel="noopener">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>pie_chart</i>
+                  <h6 class="small max">Wheel of Names</h6>
+                </div>
+                <p>วงล้อสุ่มชื่อและสุ่มเลือกตัวเลือกสำหรับจับฉลากหรือสุ่มตอบคำถามในห้อง</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">สุ่มวงล้อ</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+        <div class="s12 m6 l4 card-item">
+          <a href="#ใส่ลิงก์เครื่องมือเพิ่มเติมตรงนี้" class="card-link" target="_blank">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>extension</i>
+                  <h6 class="small max">[ชื่อเครื่องมือเพิ่มเติม]</h6>
+                </div>
+                <p>คำอธิบายสั้นๆ ของเครื่องมือออนไลน์ที่คุณแนะนำให้เพื่อน</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">แนะนำ</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="space"></div>
+
+    <!-- หมวดหมู่ที่ 2: ช่วยเรียนและเครื่องมือประจำกลุ่ม -->
+    <section class="category-section" id="sec-study">
+      <h5 class="small padding">ช่วยเรียนและเครื่องมือประจำกลุ่ม</h5>
+      <div class="grid">
+
+        <div class="s12 m6 l4 card-item">
+          <a href="#ใส่ลิงก์ชีทสรุปตรงนี้" class="card-link" target="_blank">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>description</i>
+                  <h6 class="small max">[คลังชีทสรุปและแนวข้อสอบ]</h6>
+                </div>
+                <p>รวมไฟล์สรุปบทเรียนแยกตามรายวิชาสำหรับอ่านทบทวน</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">เอกสาร</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+        <div class="s12 m6 l4 card-item">
+          <a href="#ใส่ลิงก์เครื่องมือที่สร้างเองตรงนี้" class="card-link" target="_blank">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>qr_code_2</i>
+                  <h6 class="small max">[เครื่องมือสร้าง QR / ย่อรูป]</h6>
+                </div>
+                <p>เครื่องมือจิปาถะที่สร้างไว้ใช้งานกันเองในกลุ่ม</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">เครื่องมือ</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="space"></div>
+
+    <!-- หมวดหมู่ที่ 3: มินิเกมเล่นผ่านเบราว์เซอร์ -->
+    <section class="category-section" id="sec-games">
+      <h5 class="small padding">มินิเกมเล่นผ่านเบราว์เซอร์</h5>
+      <div class="grid">
+
+        <div class="s12 m6 l4 card-item">
+          <a href="https://poki.com" class="card-link" target="_blank" rel="noopener">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>stadia_controller</i>
+                  <h6 class="small max">Poki</h6>
+                </div>
+                <p>ศูนย์รวมมินิเกมเล่นฟรีบนเว็บ ไม่ต้องโหลดแอป เล่นได้ทั้งมือถือและคอม</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">รวมเกม</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+        <div class="s12 m6 l4 card-item">
+          <a href="https://crazygames.com" class="card-link" target="_blank" rel="noopener">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>videogame_asset</i>
+                  <h6 class="small max">CrazyGames</h6>
+                </div>
+                <p>รวมเกมบนเบราว์เซอร์หลากหลายแนว ทั้งเกมพัซเซิลและเกมเล่นแข่งกับเพื่อน</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">รวมเกม</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+        <div class="s12 m6 l4 card-item">
+          <a href="#ใส่ลิงก์มินิเกมที่สร้างเองตรงนี้" class="card-link" target="_blank">
+            <article class="round border">
+              <div>
+                <div class="row">
+                  <i>casino</i>
+                  <h6 class="small max">[มินิเกมประจำกลุ่ม]</h6>
+                </div>
+                <p>เกมทายคำศัพท์หรือเกมสุ่มคำถามเล่นด้วยกันตอนพัก</p>
+              </div>
+              <div class="top-margin">
+                <span class="chip small">เล่นเลย</span>
+              </div>
+            </article>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="center-align padding">
+      <p class="small-text">สร้างโดย [ชื่อของคุณ] • ขับเคลื่อนด้วย BeerCSS</p>
+    </footer>
+
+  </main>
+
+  <script>
+    // ระบบค้นหาการ์ดแบบเรียลไทม์
+    function filterCards() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const sections = document.querySelectorAll('.category-section');
+
+      sections.forEach(section => {
+        const items = section.querySelectorAll('.card-item');
+        let hasVisible = false;
+
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(input)) {
+            item.style.display = 'block';
+            hasVisible = true;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        section.style.display = hasVisible ? 'block' : 'none';
+      });
+    }
+
+    // ฟังก์ชันอัปเดตธีมและเปลี่ยนไอคอน/ข้อความ
+    function applyTheme(mode) {
+      const body = document.body;
+      const iconHeader = document.getElementById('theme-icon-header');
+      const iconDrawer = document.getElementById('theme-icon-drawer');
+      const textDrawer = document.getElementById('theme-text-drawer');
+
+      if (mode === 'dark') {
+        body.classList.remove('light');
+        body.classList.add('dark');
+iconHeader.textContent = 'light_mode';
+iconDrawer.textContent = 'light_mode';
+textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางวัน';
+} else {
+body.classList.remove('dark');
+body.classList.add('light');
+iconHeader.textContent = 'dark_mode';
+iconDrawer.textContent = 'dark_mode';
+textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางคืน';
+}
+localStorage.setItem('site-theme', mode);
+}
+// ฟังก์ชันเมื่อผู้ใช้กดปุ่มสลับโหมด
+function toggleTheme() {
+const isDark = document.body.classList.contains('dark');
+applyTheme(isDark ? 'light' : 'dark');
+}
+// โหลดค่าธีมที่เคยเลือกไว้ หรืออิงตามการตั้งค่าของเครื่องเมื่อเปิดเว็บ
+(function initTheme() {
+const savedTheme = localStorage.getItem('site-theme');
+if (savedTheme) {
+applyTheme(savedTheme);
+} else {
+const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+applyTheme(prefersDark ? 'dark' : 'light');
+}
+})();
