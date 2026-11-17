@@ -86,7 +86,7 @@
 <div class="container">
   <div class="header">
     <h1>สูตรคูณ 1–100</h1>
-    <input type="number" id="customInput" min="1" max="1000" value="2" placeholder="ใส่แม่...">
+    <input type="number" id="customInput" min="1" max="10000000000000000000000000" value="2" placeholder="ใส่แม่...">
   </div>
 
   <div class="grid" id="selectorGrid"></div>
@@ -126,9 +126,9 @@
       b.classList.toggle('active', Number(b.dataset.num) === num);
     });
 
-    // สร้างตาราง x1 ถึง x12
+    // สร้างตาราง x1 ถึง x24
     let html = '';
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 24; i++) {
       html += `
         <div class="row">
           <span>${num} × ${i}</span>
