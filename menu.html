@@ -285,36 +285,23 @@
 
     // ฟังก์ชันอัปเดตธีมกลางวัน / กลางคืน
     function applyTheme(mode) {
-const body = document.body;
-const iconHeader = document.getElementById('theme-icon-header');
-const iconDrawer = document.getElementById('theme-icon-drawer');
-const textDrawer = document.getElementById('theme-text-drawer');
-if (mode === 'dark') {
-body.classList.remove('light');
-body.classList.add('dark');
-iconHeader.textContent = 'light_mode';
-iconDrawer.textContent = 'light_mode';
-textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางวัน';
-} else {
-body.classList.remove('dark');
-body.classList.add('light');
-iconHeader.textContent = 'dark_mode';
-iconDrawer.textContent = 'dark_mode';
-textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางคืน';
+  const body = document.body;
+  const iconHeader = document.getElementById('theme-icon-header');
+  const iconDrawer = document.getElementById('theme-icon-drawer');
+  const textDrawer = document.getElementById('theme-text-drawer');
+
+  if (mode === 'dark') {
+    body.classList.remove('light');
+    body.classList.add('dark');
+    if (iconHeader) iconHeader.textContent = 'light_mode';
+    if (iconDrawer) iconDrawer.textContent = 'light_mode';
+    if (textDrawer) textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางวัน';
+  } else {
+    body.classList.remove('dark');
+    body.classList.add('light');
+    if (iconHeader) iconHeader.textContent = 'dark_mode';
+    if (iconDrawer) iconDrawer.textContent = 'dark_mode';
+    if (textDrawer) textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางคืน';
+  }
+  localStorage.setItem('site-theme', mode);
 }
-localStorage.setItem('site-theme', mode);
-}
-function toggleTheme() {
-const isDark = document.body.classList.contains('dark');
-applyTheme(isDark ? 'light' : 'dark');
-}
-// โหลดธีมอัตโนมัติเมื่อเปิดหน้าเว็บ
-(function initTheme() {
-const savedTheme = localStorage.getItem('site-theme');
-if (savedTheme) {
-applyTheme(savedTheme);
-} else {
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-applyTheme(prefersDark ? 'dark' : 'light');
-}
-})();
