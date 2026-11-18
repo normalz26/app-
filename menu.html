@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ศูนย์รวมเครื่องมือและมินิเกมประจำกลุ่ม</title>
 
-  <!-- นำเข้า BeerCSS และ Material Symbols (ลิงก์เต็มพร้อมใช้งาน) -->
+  <!-- นำเข้า BeerCSS -->
   <link href="https://jsdelivr.net" rel="stylesheet">
   <script type="module" src="https://jsdelivr.net"></script>
   <script type="module" src="https://jsdelivr.net"></script>
 
   <style>
-    /* ปรับแต่งเพิ่มเติมเล็กน้อยให้การ์ดคลิกง่ายและจัดระยะสวยงาม */
+    /* ป้องกันแถบด้านบนบังเนื้อหา และจัดระยะให้สวยงาม */
+    main.responsive {
+      padding-top: 80px !important;
+      padding-bottom: 40px !important;
+    }
+
+    /* ทำให้การ์ดมีความสูงเท่ากันในแต่ละแถว และคลิกได้ทั้งใบ */
     .card-link {
       text-decoration: none;
       color: inherit;
@@ -20,34 +26,34 @@
     }
     .card-link article {
       height: 100%;
+      margin: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.15s ease;
     }
-    .card-link:hover article, .card-link:active article {
+    .card-link:hover article {
       transform: translateY(-2px);
     }
   </style>
 </head>
 <body class="light">
 
-  <!-- ส่วนหัวตามโครงสร้างที่ต้องการ -->
+  <!-- แถบเมนูด้านบน -->
   <header class="fixed">
     <nav>
       <button class="circle transparent" data-ui="#menu-drawer" title="เมนู">
         <i>menu</i>
       </button>
       <h6 class="max center-align">[ชื่อกลุ่มของคุณ] Hub</h6>
-      <!-- ปุ่มสลับโหมดกลางวัน / กลางคืน มุมขวาบน -->
       <button class="circle transparent" onclick="toggleTheme()" title="สลับโหมดกลางวัน/กลางคืน">
         <i id="theme-icon-header">dark_mode</i>
       </button>
     </nav>
   </header>
 
-  <!-- เมนูแถบข้าง (เปิดเมื่อกดปุ่ม menu ด้านซ้ายบน) -->
-  <dialog class="left" id="menu-drawer">
+  <!-- เมนูแถบข้าง (ใส่คลาส modal เพื่อให้ซ่อนและเลื่อนเปิด-ปิดได้ถูกต้อง) -->
+  <dialog class="left modal" id="menu-drawer">
     <header class="fixed">
       <nav>
         <button class="circle transparent" data-ui="#menu-drawer">
@@ -56,30 +62,31 @@
         <h6 class="max">หมวดหมู่</h6>
       </nav>
     </header>
-    <a class="row round" href="#sec-tools" data-ui="#menu-drawer">
-      <i>build</i>
-      <span>เครื่องมือออนไลน์ยอดนิยม</span>
-    </a>
-    <a class="row round" href="#sec-study" data-ui="#menu-drawer">
-      <i>school</i>
-      <span>ช่วยเรียนและเอกสาร</span>
-    </a>
-    <a class="row round" href="#sec-games" data-ui="#menu-drawer">
-      <i>sports_esports</i>
-      <span>มินิเกมเล่นผ่านเว็บ</span>
-    </a>
-    <div class="divider"></div>
-    <!-- ปุ่มสลับโหมดในเมนูแถบข้าง -->
-    <a class="row round" onclick="toggleTheme()">
-      <i id="theme-icon-drawer">dark_mode</i>
-      <span id="theme-text-drawer">เปลี่ยนเป็นโหมดกลางคืน</span>
-    </a>
+    <div class="padding">
+      <a class="row round" href="#sec-tools" data-ui="#menu-drawer">
+        <i>build</i>
+        <span>เครื่องมือออนไลน์ยอดนิยม</span>
+      </a>
+      <a class="row round" href="#sec-study" data-ui="#menu-drawer">
+        <i>school</i>
+        <span>ช่วยเรียนและเอกสาร</span>
+      </a>
+      <a class="row round" href="#sec-games" data-ui="#menu-drawer">
+        <i>sports_esports</i>
+        <span>มินิเกมเล่นผ่านเว็บ</span>
+      </a>
+      <div class="divider"></div>
+      <a class="row round" onclick="toggleTheme()">
+        <i id="theme-icon-drawer">dark_mode</i>
+        <span id="theme-text-drawer">เปลี่ยนเป็นโหมดกลางคืน</span>
+      </a>
+    </div>
   </dialog>
 
   <!-- พื้นที่เนื้อหาหลัก -->
   <main class="responsive">
-    
-    <!-- ช่องค้นหาสไตล์ Material 3 -->
+
+    <!-- ช่องค้นหา -->
     <div class="field label prefix round border">
       <i>search</i>
       <input type="text" id="searchInput" onkeyup="filterCards()">
@@ -87,19 +94,19 @@
     </div>
 
     <!-- หมวดหมู่ที่ 1: เครื่องมือออนไลน์ยอดนิยม -->
-    <section class="category-section" id="sec-tools">
-      <h5 class="small padding">เครื่องมือออนไลน์ยอดนิยม</h5>
+    <section class="category-section large-margin" id="sec-tools">
+      <h6 class="primary-text bold bottom-margin">เครื่องมือออนไลน์ยอดนิยม</h6>
       <div class="grid">
 
         <div class="s12 m6 l4 card-item">
           <a href="https://converttoit.com" class="card-link" target="_blank" rel="noopener">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>transform</i>
-                  <h6 class="small max">Convert To It</h6>
+                  <h6 class="small bold max">Convert To It</h6>
                 </div>
-                <p>เครื่องมือแปลงไฟล์โอเพนซอร์สบนเบราว์เซอร์ แปลงข้ามฟอร์แมตได้อิสระโดยไม่อัปโหลดไฟล์</p>
+                <p class="small-text">เครื่องมือแปลงไฟล์โอเพนซอร์สบนเบราว์เซอร์ แปลงข้ามฟอร์แมตได้อิสระโดยไม่อัปโหลดไฟล์</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">แปลงไฟล์</span>
@@ -110,13 +117,13 @@
 
         <div class="s12 m6 l4 card-item">
           <a href="https://wheelofnames.com" class="card-link" target="_blank" rel="noopener">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>pie_chart</i>
-                  <h6 class="small max">Wheel of Names</h6>
+                  <h6 class="small bold max">Wheel of Names</h6>
                 </div>
-                <p>วงล้อสุ่มชื่อและสุ่มเลือกตัวเลือกสำหรับจับฉลากหรือสุ่มตอบคำถามในห้อง</p>
+                <p class="small-text">วงล้อสุ่มชื่อและสุ่มเลือกตัวเลือกสำหรับจับฉลากหรือสุ่มตอบคำถามในห้อง</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">สุ่มวงล้อ</span>
@@ -127,13 +134,13 @@
 
         <div class="s12 m6 l4 card-item">
           <a href="#ใส่ลิงก์เครื่องมือเพิ่มเติมตรงนี้" class="card-link" target="_blank">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>extension</i>
-                  <h6 class="small max">[ชื่อเครื่องมือเพิ่มเติม]</h6>
+                  <h6 class="small bold max">[ชื่อเครื่องมือเพิ่มเติม]</h6>
                 </div>
-                <p>คำอธิบายสั้นๆ ของเครื่องมือออนไลน์ที่คุณแนะนำให้เพื่อน</p>
+                <p class="small-text">คำอธิบายสั้นๆ ของเครื่องมือออนไลน์ที่คุณแนะนำให้เพื่อน</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">แนะนำ</span>
@@ -145,22 +152,20 @@
       </div>
     </section>
 
-    <div class="space"></div>
-
     <!-- หมวดหมู่ที่ 2: ช่วยเรียนและเครื่องมือประจำกลุ่ม -->
-    <section class="category-section" id="sec-study">
-      <h5 class="small padding">ช่วยเรียนและเครื่องมือประจำกลุ่ม</h5>
+    <section class="category-section large-margin" id="sec-study">
+      <h6 class="primary-text bold bottom-margin">ช่วยเรียนและเครื่องมือประจำกลุ่ม</h6>
       <div class="grid">
 
         <div class="s12 m6 l4 card-item">
           <a href="#ใส่ลิงก์ชีทสรุปตรงนี้" class="card-link" target="_blank">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>description</i>
-                  <h6 class="small max">[คลังชีทสรุปและแนวข้อสอบ]</h6>
+                  <h6 class="small bold max">[คลังชีทสรุปและแนวข้อสอบ]</h6>
                 </div>
-                <p>รวมไฟล์สรุปบทเรียนแยกตามรายวิชาสำหรับอ่านทบทวน</p>
+                <p class="small-text">รวมไฟล์สรุปบทเรียนแยกตามรายวิชาสำหรับอ่านทบทวน</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">เอกสาร</span>
@@ -171,13 +176,13 @@
 
         <div class="s12 m6 l4 card-item">
           <a href="#ใส่ลิงก์เครื่องมือที่สร้างเองตรงนี้" class="card-link" target="_blank">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>qr_code_2</i>
-                  <h6 class="small max">[เครื่องมือสร้าง QR / ย่อรูป]</h6>
+                  <h6 class="small bold max">[เครื่องมือสร้าง QR / ย่อรูป]</h6>
                 </div>
-                <p>เครื่องมือจิปาถะที่สร้างไว้ใช้งานกันเองในกลุ่ม</p>
+                <p class="small-text">เครื่องมือจิปาถะที่สร้างไว้ใช้งานกันเองในกลุ่ม</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">เครื่องมือ</span>
@@ -189,22 +194,20 @@
       </div>
     </section>
 
-    <div class="space"></div>
-
     <!-- หมวดหมู่ที่ 3: มินิเกมเล่นผ่านเบราว์เซอร์ -->
-    <section class="category-section" id="sec-games">
-      <h5 class="small padding">มินิเกมเล่นผ่านเบราว์เซอร์</h5>
+    <section class="category-section large-margin" id="sec-games">
+      <h6 class="primary-text bold bottom-margin">มินิเกมเล่นผ่านเบราว์เซอร์</h6>
       <div class="grid">
 
         <div class="s12 m6 l4 card-item">
           <a href="https://poki.com" class="card-link" target="_blank" rel="noopener">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>stadia_controller</i>
-                  <h6 class="small max">Poki</h6>
+                  <h6 class="small bold max">Poki</h6>
                 </div>
-                <p>ศูนย์รวมมินิเกมเล่นฟรีบนเว็บ ไม่ต้องโหลดแอป เล่นได้ทั้งมือถือและคอม</p>
+                <p class="small-text">ศูนย์รวมมินิเกมเล่นฟรีบนเว็บ ไม่ต้องโหลดแอป เล่นได้ทั้งมือถือและคอม</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">รวมเกม</span>
@@ -215,13 +218,13 @@
 
         <div class="s12 m6 l4 card-item">
           <a href="https://crazygames.com" class="card-link" target="_blank" rel="noopener">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>videogame_asset</i>
-                  <h6 class="small max">CrazyGames</h6>
+                  <h6 class="small bold max">CrazyGames</h6>
                 </div>
-                <p>รวมเกมบนเบราว์เซอร์หลากหลายแนว ทั้งเกมพัซเซิลและเกมเล่นแข่งกับเพื่อน</p>
+                <p class="small-text">รวมเกมบนเบราว์เซอร์หลากหลายแนว ทั้งเกมพัซเซิลและเกมเล่นแข่งกับเพื่อน</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">รวมเกม</span>
@@ -232,13 +235,13 @@
 
         <div class="s12 m6 l4 card-item">
           <a href="#ใส่ลิงก์มินิเกมที่สร้างเองตรงนี้" class="card-link" target="_blank">
-            <article class="round border">
+            <article class="round border padding">
               <div>
                 <div class="row">
                   <i>casino</i>
-                  <h6 class="small max">[มินิเกมประจำกลุ่ม]</h6>
+                  <h6 class="small bold max">[มินิเกมประจำกลุ่ม]</h6>
                 </div>
-                <p>เกมทายคำศัพท์หรือเกมสุ่มคำถามเล่นด้วยกันตอนพัก</p>
+                <p class="small-text">เกมทายคำศัพท์หรือเกมสุ่มคำถามเล่นด้วยกันตอนพัก</p>
               </div>
               <div class="top-margin">
                 <span class="chip small">เล่นเลย</span>
@@ -250,8 +253,8 @@
       </div>
     </section>
 
-    <footer class="center-align padding">
-      <p class="small-text">สร้างโดย [ชื่อของคุณ] • ขับเคลื่อนด้วย BeerCSS</p>
+    <footer class="center-align large-padding">
+      <p class="small-text secondary-text">สร้างโดย [ชื่อของคุณ] • ขับเคลื่อนด้วย BeerCSS</p>
     </footer>
 
   </main>
@@ -269,27 +272,26 @@
         items.forEach(item => {
           const text = item.textContent.toLowerCase();
           if (text.includes(input)) {
-            item.style.display = 'block';
+            item.style.display = '';
             hasVisible = true;
           } else {
             item.style.display = 'none';
           }
         });
 
-        section.style.display = hasVisible ? 'block' : 'none';
+        section.style.display = hasVisible ? '' : 'none';
       });
     }
 
-    // ฟังก์ชันอัปเดตธีมและเปลี่ยนไอคอน/ข้อความ
+    // ฟังก์ชันอัปเดตธีมกลางวัน / กลางคืน
     function applyTheme(mode) {
-      const body = document.body;
-      const iconHeader = document.getElementById('theme-icon-header');
-      const iconDrawer = document.getElementById('theme-icon-drawer');
-      const textDrawer = document.getElementById('theme-text-drawer');
-
-      if (mode === 'dark') {
-        body.classList.remove('light');
-        body.classList.add('dark');
+const body = document.body;
+const iconHeader = document.getElementById('theme-icon-header');
+const iconDrawer = document.getElementById('theme-icon-drawer');
+const textDrawer = document.getElementById('theme-text-drawer');
+if (mode === 'dark') {
+body.classList.remove('light');
+body.classList.add('dark');
 iconHeader.textContent = 'light_mode';
 iconDrawer.textContent = 'light_mode';
 textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลางวัน';
@@ -302,12 +304,11 @@ textDrawer.textContent = 'เปลี่ยนเป็นโหมดกลา
 }
 localStorage.setItem('site-theme', mode);
 }
-// ฟังก์ชันเมื่อผู้ใช้กดปุ่มสลับโหมด
 function toggleTheme() {
 const isDark = document.body.classList.contains('dark');
 applyTheme(isDark ? 'light' : 'dark');
 }
-// โหลดค่าธีมที่เคยเลือกไว้ หรืออิงตามการตั้งค่าของเครื่องเมื่อเปิดเว็บ
+// โหลดธีมอัตโนมัติเมื่อเปิดหน้าเว็บ
 (function initTheme() {
 const savedTheme = localStorage.getItem('site-theme');
 if (savedTheme) {
